@@ -1,0 +1,41 @@
+{%for data in pagination_data%}
+<div class="card" style="margin-bottom:10px;">
+
+    <div class="row" style="margin:15px;">
+
+        <!-- Codename Status Bar -->
+        {% include "dashboard/includes/includes_charts/codename_status_bar.html" %}
+        <!-- Chart Year -->
+        {% include "dashboard/includes/includes_charts/chart_year.html" %}
+        <!-- Chart Journal -->
+        {% include "dashboard/includes/includes_charts/chart_journal.html" %}
+
+        <div class="row">
+
+            <!-- BUTTON SHOW PROPERTIES BELOW -->
+            <div class="col-md-3 btn-group-toggle" data-toggle="buttons" onclick="myFunction('{{loop.index}}')">
+                <label class="btn btn-outline-secondary">
+                    Properties<!-- {{data['codename']}} -->
+                </label>
+            </div>
+
+        </div>
+
+        <!-- INFORMATION ABOUT CODENAME & UPDATE MONGO % URL & JSON & POSSIBLE SYNONYMS-->
+        <div id="{{loop.index}}" } style="display:none;">
+
+            <!-- Mongo -->
+            {% include "dashboard//includes/includes_charts/mongo_save.html" %}
+            <!-- Possible Synonyms -->
+            {% include "dashboard//includes/includes_charts/possible_synonyms.html"%}
+            <!-- Bing URL -->
+            {% include "dashboard//includes/includes_charts/bing_search.html" %}
+            <!-- Json PPrint -->
+            {% include "dashboard//includes/includes_charts/json_format.html" %}
+            
+        </div>
+
+    </div>
+
+</div>
+{%endfor%}

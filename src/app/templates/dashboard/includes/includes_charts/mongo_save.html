@@ -1,0 +1,42 @@
+<!-- SAVE ON MONGO -->
+<div class="row justify-content-center  d-flex align-items-center">
+
+    <div class="col-md-3">
+        <div class="form-group mb-5">
+            <p>Comment</p>
+            <textarea class="form-control rounded-10" rows="3"
+                id="{{loop.index}}comment">{{data['comment']}}</textarea>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <p>Class</p>
+        <p><input value="{{data['class']}}" type="text" id="{{loop.index}}class" /></p>
+        </label>
+    </div>
+
+    <div class="col-md-3">
+        <p class="{{loop.index}}TP_text">True Positive</p>
+        <label class="switch">
+            {%if data["TP"]%}
+            <input class="{{loop.index}}TP" id="profile-toggle" checked type="checkbox">
+            {%else%}
+            <input class="{{loop.index}}TP" id="profile-toggle" type="checkbox">
+            {%endif%}
+            <span class="slider_TP round"></span>
+        </label>
+    </div>
+
+    <div class="col-md-3">
+
+        <script>
+            saveMongo(
+                id = "{{loop.index}}",
+                synonym = "{{data['codename']}}")
+        </script>
+
+        <form method="POST" id="{{loop.index}}submit">
+            <p><input type="submit" value="SAVE" class="btn btn-outline-secondary" /></p>
+        </form>
+    </div>
+</div>

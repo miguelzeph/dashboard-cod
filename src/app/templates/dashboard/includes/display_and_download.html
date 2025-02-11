@@ -1,0 +1,8 @@
+<!-- Button Action - Display & Download -->
+{%if counter["TOTAL"] > 0%}    
+    <!-- Counts - Total / TP / FP / Pubchem -->
+    {% include "dashboard/includes/includes_pagination/counts.html"%}
+
+    <!-- Download Results -->
+    {% include "dashboard/includes/includes_pagination/download_results.html"%}
+{%endif%}

@@ -1,0 +1,20 @@
+{% extends 'regex/base.html' %}
+{% block title %} index page {% endblock %}
+{% block index %}
+
+<!-- Update Regex Database - Ingest Codename List -->
+{% include "regex/includes/ingest_codename.html" %}
+
+<!-- Search for Regex code -->
+{% include "regex/includes/search_regex.html" %}
+
+
+<!-- Results -->
+{% block result %}
+
+{% endblock %}
+
+<!-- Loading Spinner (Always in the end of the Page)-->
+{% include "dashboard/includes/spinner.html" %}
+
+{% endblock %} <!--index-->

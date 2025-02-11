@@ -1,0 +1,25 @@
+<!--  Display Total of Documents -->
+<a title = "Show all documents"
+ href="{{url_for('dashboard.display_codename', show ='TOTAL') }}" class="btn btn-primary" >Total <span
+    class="badge alert-light">{{counter["TOTAL"]}}</span></a>
+
+<!-- Display Only TP -->
+<a title = "Show only True Positives"
+ href="{{url_for('dashboard.display_codename', show ='TP') }}" class="btn btn-success">TP <span
+    class="badge alert-light">{{counter["TP"]}}</span></a>
+
+<!-- Display Only FP -->
+<a title = "Show only False Positives"
+ href="{{url_for('dashboard.display_codename', show ='FP') }}" class="btn btn-danger">FP <span
+    class="badge alert-light">{{counter["FP"]}}</span></a>
+
+<!-- Display Only codenames found in PubChem -->
+<a title = "Show documents found in PubChem"
+ href="{{url_for('dashboard.display_codename', show ='PUBCHEM') }}" class="btn btn-warning">PubChem
+<span class="badge alert-light">{{counter["in_pubchem"]}}</span></a>
+
+<!-- Display Only documents changed manually-->
+<a title = "Show documents changed manually"
+ href="{{url_for('dashboard.display_codename', show ='PADLOCK') }}" class="btn btn-info">
+    <i class="fa fa-lock" style="font-size:20px"></i>
+<span class="badge alert-light">{{counter["padlock"]}}</span></a>

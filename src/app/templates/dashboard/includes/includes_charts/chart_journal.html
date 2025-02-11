@@ -1,0 +1,14 @@
+ <!-- CHART JOURNAL -->
+ <div class="col-6">
+    <canvas id="{{loop.index}}_journal" width="400" height="300"></canvas>
+    <script>
+        myChart(
+            "{{loop.index}}_journal",
+            "{{data['codename']}}",
+            {{ data['chart']['labels_journal'] | safe }},
+            {{ data['chart']['data_journal'] | safe }},
+            'rgba(255, 100, 80, 0.3)',
+            'Count Codename by Journals')
+    </script>
+
+</div>

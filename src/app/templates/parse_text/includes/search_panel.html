@@ -1,0 +1,31 @@
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Parse Text Panel
+        </p>
+    </div>
+
+    <div class="row" style="margin:10px" >
+    
+            <form class= "loading" action="{{url_for('parse_text.parsing_function' ) }}" method="POST"
+                enctype="multipardashboardt/form-data" >
+
+                <div class="form-group row">
+                    <div class="form-group">
+
+                        <!-- <label>Text Area</label> -->
+                        <textarea id="myTextarea" name="text_area" class="form-control" value="text_area" rows="10">{{text_area}}</textarea>
+
+                    </div>
+                </div>
+
+                <br>
+                <input type="submit" value="Search for Codenames" class="btn btn-outline-secondary" /> <!--<i
+                    style="color:rgb(170, 170, 170)">Submit blank to all docs </i>-->
+                      
+            </form>
+
+    </div>
+
+</div>

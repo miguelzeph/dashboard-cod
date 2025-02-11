@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{% block title %} index page {% endblock %}
+{% block index %}
+
+<!-- Report all DB -->
+{%block report_general%}
+<!--
+- Codename Report (My Personal one)
+- Pandas Overview (Library)
+-->
+{%endblock%} <!--report_general-->
+
+<!-- Results -->
+{% block result %} 
+<!-- 
+- Partial Report
+- Pagination
+- Filter Panel
+- Charts
+- JSON print
+- Update Mongo collection
+-->
+{% endblock %} <!--result-->
+
+<!-- Loading Spinner (Always in the end of the Page)-->
+{% include "dashboard/includes/spinner.html" %}
+
+{% endblock %} <!--index-->

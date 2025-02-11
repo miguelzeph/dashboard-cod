@@ -1,0 +1,15 @@
+<div class="col-6">
+
+    <!-- CHART YEAR -->
+    <canvas id="{{loop.index}}_year" width="500" height="300"></canvas>
+    <script>
+        myChart(
+            "{{loop.index}}_year",
+            "{{data['codename']}}",
+            {{ data['chart']['labels_year'] | safe }},
+            {{ data['chart']['data_year'] | safe }},
+            'rgba(100, 255, 80, 0.3)',
+            'Count Codename by Years')
+    </script>
+
+</div>

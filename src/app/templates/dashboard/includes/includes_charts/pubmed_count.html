@@ -1,0 +1,7 @@
+<a href="https://pubmed.ncbi.nlm.nih.gov/?term={{data['synonym']}}" class="link-secondary" target="_blank" style="color:white">
+    {%if data["pubmed_count_results"]%}
+    {{data["pubmed_count_results"]}}
+    {%else%}
+    Nothing found.
+    {%endif%}
+</a>

@@ -1,0 +1,54 @@
+{%if years_min_max%}
+    <!-- Slider Bar -->
+    <div class="col-md-3" style="margin:20px">
+        <div class="slider-container">
+            <input type="text" name="filter_slider" id="slider" class="slider", onchange="slider()" />
+        </div>
+    </div>
+
+
+    <script>
+        // Jinja var
+
+        // Min and Max values
+        var years_vals_min = {{years_min_max['min'] | int}};
+        var years_vals_max = {{years_min_max['max'] | int}};
+
+        // Values selected
+        var year_value_1 = {%if years_vals%}{{years_vals['min'] | int}}{%else%}{{years_min_max['min'] | int}}{%endif%};
+        var year_value_2 = {%if years_vals%}{{years_vals['max'] | int}}{%else%}{{years_min_max['max'] | int}}{%endif%};
+
+        var mySlider = new rSlider({
+                target: '#slider',
+                values: {min: years_vals_min, max: years_vals_max},
+                step: 1,
+                range: true,
+                set: [year_value_1, year_value_2],
+                scale: true,
+                labels: false,
+                // Fetch API
+                /*
+                onChange: function (vals) {
+                    fetch(`/slider_vals`,{
+                    "method":"POST",
+                    credentials:"include",
+                    body: JSON.stringify( {
+                        "show": "{{show}}",
+                        "vals":vals
+                    }),
+                    cache: "no-cache",
+                    headers: new Headers({"content-type":"application/json"})
+                })
+                    .then(response => { if(response.redirected) {console.log(vals);
+                        return response.text()
+                    }})
+                    .then(html => { //console.log(html);
+                        document.body.innerHTML = html
+                    })
+                    .catch(error => { console.log('request FAILED...', error); })
+                }*/
+            });
+            //window.onchange = mySlider;
+            //document.getElementById("slider").onchange = mySlider;
+    </script>
+{%endif%}

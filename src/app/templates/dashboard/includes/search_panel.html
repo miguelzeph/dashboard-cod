@@ -1,0 +1,62 @@
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Search Panel
+        </p>
+    </div>
+
+    <div class="row">
+    
+        <div class="col">
+            <form class= "loading" action="{{url_for('dashboard.search', show = 'TOTAL' ) }}" method="POST"
+                enctype="multipart/form-data" style="margin:20px;">
+
+                <div class="form-group row">
+
+                    <div class="form-group col">
+
+                        <label>Codename:</label>
+                        <input type="text" name="drug_name" size ="12"/>
+                        <!-- Codename Examples -->
+                        <!-- {% include "dashboard/includes/includes_arrow_toggle/codename_examples.html" %} -->
+                        <br>
+
+
+                    </div>
+
+                    <div class="form-group col">
+
+                        <p>Upload a list of PubMed IDs</p>
+                        <input type="file" name="file_upload" />
+
+                    </div>
+
+                </div>
+
+                <input type="submit" value="submit" class="btn btn-outline-secondary" /> <!--<i
+                    style="color:rgb(170, 170, 170)">Submit blank to all docs </i>-->
+                
+                <!-- Regular Expression Tips -->
+                {% include "dashboard/includes/includes_arrow_toggle/regular_expression_tips.html" %}    
+
+                      
+            </form>
+        </div>
+
+        <div class="col">
+            <form class="loading" action="{{url_for('dashboard.report_general' ) }}" method="POST"
+                enctype="multipart/form-data" style="margin:20px;">
+        
+                <input type="submit" value="Database Statistics" class="btn btn-success mt-3" /> 
+                <!-- <br><i style="color:rgb(170, 170, 170)">Report about all Database</i> -->
+                
+                <!-- Database info -->
+                {% include "dashboard/includes/includes_arrow_toggle/database_statistics.html" %}
+       
+            </form>
+        </div>
+
+    </div>
+
+</div>

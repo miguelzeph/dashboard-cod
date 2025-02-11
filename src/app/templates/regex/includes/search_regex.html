@@ -1,0 +1,31 @@
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Codename Pattern Analysis
+        </p>
+
+        <p>
+        This feature evaluates regex patterns against our database to identify the number of 
+        matching codenames. It provides insights into the effectiveness and accuracy of the 
+        patterns, highlighting patterns with higher false positives. This empowers users to 
+        refine and optimize pattern selection for improved codename detection. Enhance precision 
+        and reduce false positives by leveraging this feature for informed decision-making. Clicking 
+        on the table will redirect you to the respective codename's dashboard.
+        </p>
+
+        <li style="color:blue;">Ordinary Result</li>
+        <li style="color:green;">Only True Positive</li>
+        <li style="color:red;">Only False Positive (check)</li>
+        <li style="color:gray;">No Codename Found</li>
+
+    </div>
+
+    <div  style="margin:10px" >
+    
+        <!-- Generate List Button -->
+        <a href = "{{ url_for('regex.check_regex') }}" class=" loading btn btn-outline-secondary btn-sm">Generate List</a>        
+
+    </div>
+
+</div>

@@ -1,0 +1,10 @@
+<!-- COMPOUND_ID LINK -->
+{%if data['compound_id']%}
+    <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{data['compound_id']}}" target="_blank" style="color:white">
+        {{data["compound_id"]}}
+    </a>
+{%else%}
+    <span style="color:white">
+        {{data["compound_id"]}}
+    </span>
+{%endif%}

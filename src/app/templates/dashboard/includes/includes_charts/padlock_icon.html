@@ -1,0 +1,19 @@
+{%if not data["validated_by_pipeline"] %}
+ <i class="fa fa-lock" style="font-size:20px;color:white"></i>
+{%endif%}
+
+<!-- 
+    Previous Version:
+
+    - Shows a padlock when the codename was setup manually
+        - padlock green means that is a True Positive
+        - padlock red means that is a False Positive
+
+    if not data["validated_by_pipeline"] 
+        if data["TP"] is sameas true
+        <i class="fa fa-lock" style="font-size:20px;color:green"></i>
+        elif data["TP"] is sameas false
+        <i class="fa fa-lock" style="font-size:20px;color:red"></i>
+        endif
+    endif
+ -->

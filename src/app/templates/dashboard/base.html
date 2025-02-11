@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.46">
+
+    <title> Dashboard - {%block title%} {%endblock%}</title>
+
+    {% include "dashboard/includes/imports.html" %}
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <!-- Initial Container -->
+        {% include "dashboard/includes/welcome_dashboard.html" %}
+        <!-- Search Bar -->
+        {% include "dashboard/includes/search_panel.html" %}
+
+        {% block index %}
+        <!--INDEX.HTML-->
+        {% endblock %}
+
+    </div>
+
+</body>
+
+</html>

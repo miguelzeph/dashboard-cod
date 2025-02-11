@@ -1,0 +1,18 @@
+{% extends 'dashboard/index.html' %}
+{% block title %} Results {% endblock %}
+{% block result %}
+
+<!-- Partial Report -->
+{% include "dashboard/includes/partial_report.html" %}
+<!-- Filter Panel -->
+{% include "dashboard/includes/filter_panel.html" %}
+<!-- Drug Name Searched -->
+{% include "dashboard/includes/codename_searched.html" %}
+<!-- Header ===> Pagination + Display & Download -->
+{% include "dashboard/includes/header_charts.html" %}
+<!-- Charts / Mongo update -->
+{% include "dashboard/includes/charts.html" %}
+<!-- Footer ===> Pagination -->
+{% include "dashboard/includes/pagination.html" %}
+
+{% endblock %}

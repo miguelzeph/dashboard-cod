@@ -1,0 +1,94 @@
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+  GIT_SUBMODULE_STRATEGY: recursive
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+stages:
+  - lint
+  # - test
+  - publish
+  - release
+
+default:
+  image: registry.gitlab.com/medicines-discovery-catapult/informatics/docker-images/ci/python:3.9
+  before_script:
+    - pip install --upgrade pip
+    - pip install -r tests/requirements.txt --extra-index-url https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/api/v4/projects/${REGISTRY_HOST_PROJECT_ID}/packages/pypi/simple
+    - pip install -r requirements.txt --extra-index-url https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/api/v4/projects/${REGISTRY_HOST_PROJECT_ID}/packages/pypi/simple
+
+lint:
+  stage: lint
+  script:
+    - pylint --rcfile=./.pylintrc src
+    - pylint --rcfile=./.pylintrc tests
+
+# test:
+#   stage: test
+#   tags:
+#     - wopr
+#   script:
+#     - cd ./src
+#     - python ../tests/test_main.py --config=config.yml
+
+publish:
+  stage: publish
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+  script:
+    - >
+        /kaniko/executor
+        --context $CI_PROJECT_DIR
+        --build-arg GITLAB_USER=gitlab-ci-token
+        --build-arg GITLAB_TOKEN=$CI_JOB_TOKEN
+        --build-arg GITLAB_REGISTRY=$REGISTRY_HOST_PROJECT_ID
+        --build-arg CONSUMER_VERSION=$CI_COMMIT_REF_SLUG
+        --build-arg CONSUMER_VERSION_HASH=$CI_COMMIT_SHORT_SHA
+        --destination "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    refs:
+      - main
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /^Setting version to.*/
+
+
+publish-main:
+  stage: publish
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+  script:
+    - >
+        /kaniko/executor
+        --context $CI_PROJECT_DIR
+        --build-arg GITLAB_USER=gitlab-ci-token
+        --build-arg GITLAB_TOKEN=$CI_JOB_TOKEN
+        --build-arg GITLAB_REGISTRY=$REGISTRY_HOST_PROJECT_ID
+        --build-arg CONSUMER_VERSION=$CI_COMMIT_REF_NAME
+        --build-arg CONSUMER_VERSION_HASH=$CI_COMMIT_SHORT_SHA
+        --destination "$CI_REGISTRY_IMAGE"
+        --destination "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /^Setting version to.*/
+
+release:
+  stage: release
+  before_script: [""]
+  script:
+    - cictl exec release python
+  only:
+    - main
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /^Setting version to.*/

@@ -1,0 +1,23 @@
+<div class="p-5 bg-light rounded-3 meucss">
+    <div class="container">
+        
+        <p class="display-5">
+            <!-- LOGO -->
+            <img src="{{ url_for('static', filename='img/dashboard_codename.png') }}" alt="#" class="img-thumbnail" width="300" height="300">
+            <!-- Portal Name -->
+            Codename <b>Dashboard</b> 
+        </p>
+
+        <p>
+            <!-- Text -->
+            Introducing our Codename Dashboard: a comprehensive tool for identifying pharmaceutical 
+            compounds. Easily discover codenames, analyze journal frequencies, and explore publication years. 
+            With daily updates, our pipeline ensures real-time data access for some journals.
+        </p>
+        
+        <!-- button to return -->
+        <a href = "{{ url_for('portal.index') }}" class="btn btn-outline-secondary">
+            Back to Portal
+        </a>
+    </div>
+</div>

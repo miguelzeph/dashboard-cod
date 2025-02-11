@@ -1,0 +1,25 @@
+<!-- BUTTON TO SHOW URL LIST -->
+<div class="row card" style="margin-bottom:10px;">
+    <div class="col-md-3 btn-group-toggle" data-toggle="buttons" onclick="myFunction('BING_{{loop.index}}')"
+        style="margin:10px;">
+        <label class="btn btn-outline-secondary">
+            URL LIST
+        </label>
+    </div>
+
+    <!-- BING SEARCH API - URLS -->
+    <div id="BING_{{loop.index}}" style="display:none;margin-top:20px;">
+        <!-- <ul class="list-group list-group-flush"> -->
+        <ul class="list-group">
+
+            {%for bing_url in data["bing_search"]%}
+
+            <li class="list-group-item ">
+
+                <a href="{{bing_url}}" class="link-secondary" target="_blank">{{bing_url}}</a>
+            </li>
+
+            {%endfor%}
+        </ul>
+    </div>
+</div>

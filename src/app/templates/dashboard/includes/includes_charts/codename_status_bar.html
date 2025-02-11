@@ -1,0 +1,28 @@
+<li class="list-group-item codename-item {% if data.TP %}bg-success{% else %}bg-danger{% endif %} rounded">
+    <div class="row">
+
+        <div class="col-3">
+            <p class="h4" style="color:white">
+                {{data['codename']}}
+            <!-- padlock -> indicate manual changes -->
+            {% include "dashboard/includes/includes_charts/padlock_icon.html" %}
+        </div>
+
+        <div class="col-3">
+            <strong style="color:white">Status:</strong>
+            <span style="color:white">{% if data.TP %}True{% else %}False{% endif %}</span>
+        </div>
+        <div class="col-3">
+            <strong style="color:white">PubMed Hit:</strong>
+            <span style="color:white">
+            <!-- Number of hits on PubMed -->
+            {% include "dashboard/includes/includes_charts/pubmed_count.html" %}
+            </span>
+        </div>
+        <div class="col-3">
+            <strong style="color:white">PubChem(CID):</strong>
+            <!-- COMPOUND_ID LINK -->
+            {% include "dashboard/includes/includes_charts/compound_id.html" %}
+        </div>
+    </div>
+</li>

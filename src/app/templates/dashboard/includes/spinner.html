@@ -1,0 +1,57 @@
+
+<!-- My spinner function -->
+<script>// Create a new spinner and set its options
+    var spinner = new Spinner({
+        lines: 30,
+        length: 25,
+        width: 4,
+        radius: 15,
+        color: '#000',
+        speed: 1,
+        trail: 100,
+        zIndex: 2e9,
+        className: 'spinner'
+    });
+
+    $('.loading').on('submit', function() {
+        $('#spinner-container').show();
+        var reportFrame = $('.loading');
+        spinner.spin($('#spinner-container')[0]);
+        reportFrame.on('load', function() {
+            spinner.stop();
+        });
+    });
+
+    $(document).on('click', 'a.loading', function(e) {
+        e.preventDefault(); // Impede o comportamento padrão de navegação
+        var link = $(this);
+        $('#spinner-container').show();
+        spinner.spin($('#spinner-container')[0]);
+        setTimeout(function() {
+            spinner.stop();
+            window.location.href = link.attr('href'); // Navega para a página de destino após o tempo de cálculo
+        }, 2000); // Tempo de cálculo simulado de 2 segundos (ajuste conforme necessário)
+    });
+
+    $(window).on('load', function() {
+        $('#spinner-container').fadeOut('slow');
+    });
+      
+    
+    // Show spinner while loading report HTML
+    /*$(document).ready(function() {
+        var reportFrame = $('#loading');
+        spinner.spin($('#spinner-container')[0]);
+        reportFrame.on('load', function() {
+            spinner.stop();
+        });
+    });*/
+    /*$(window).on('load', function() {
+        setTimeout(function() {
+           $('#spinner-container').fadeOut('slow');
+        }, 1000);
+     });*/
+</script>
+
+<!-- Spinner -->
+<div id="spinner-container"></div>

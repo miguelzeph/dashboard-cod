@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.46">
+
+    <title> Parse Text - {%block title%} {%endblock%}</title>
+
+    {% include "parse_text/includes/imports.html" %}
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <!-- Initial Container -->
+        {% include "parse_text/includes/welcome_parse.html" %}
+        
+        {% block index %}
+        <!--INDEX.HTML-->
+        {% endblock %}
+
+    </div>
+
+</body>
+
+</html>

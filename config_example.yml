@@ -1,0 +1,24 @@
+
+mongo:
+  host: localhost
+  port: 27017
+  username: mongodb 
+  password: mongodb
+  authSource: admin
+  authMechanism:  DEFAULT
+  readPreference: secondaryPreferred
+  database: Codename
+  collection_articles_codename: codename
+  collection_blacklist: codename_blacklist
+  collection_pattern: regex_pattern
+
+dashboard:
+  documents_per_page: 10
+  n_statistic_report: 200
+
+flask:
+  secret_key: mysecretkey
+  session_type: filesystem
+  debug: 0
+  api_host: 0.0.0.0
+  api_port: 5000

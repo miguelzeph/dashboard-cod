@@ -1,0 +1,48 @@
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Parse Text Panel
+        </p>
+    </div>
+
+    <div class="row" style="margin:10px" >
+        <div class="form-group row">
+            <div class="form-group">
+            
+            <label>Text Area</label>
+
+            <div id="textoDiv" class="form-control" contenteditable="true" style="margin-bottom:5px">{{text_area}}</div>
+            <button id="enviarBtn" action="{{url_for('parse_text.parsing_function' ) }}" class="btn btn-outline-secondary">Enviar</button>
+
+            </div>
+                        
+        </div>    
+
+    </div>
+
+</div>
+
+<script>
+    document.getElementById('enviarBtn').addEventListener('click', function() {
+        var texto = document.getElementById('textoDiv').innerText;
+      
+        fetch("/parse_text/result", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({"text_area": texto})
+        })
+        .then(function(response) {
+            if (response.ok) {
+                window.location.href = "/parse_text/result";
+            } else {
+                console.alert("Erro during request");
+            }
+        })
+        .catch(function(error) {
+            console.alert("Error: " + error);
+        });
+    });
+</script>

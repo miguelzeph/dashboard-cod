@@ -1,0 +1,77 @@
+<!--  Text with Highlight codename -->
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Parse Text Panel
+        </p>
+    </div>
+
+        <div class="row" style="margin:10px" >
+            <div class="form-group row">
+                <div class="form-group">
+                
+                <label>Text Area</label>
+
+                <div id="textoDiv" class="form-control" contenteditable="true" pastePlain style="margin-bottom:5px">
+                    
+                    {%if highlight_words%}
+                    
+                        {%for text in text_area.split(" ")%}
+                            {%if text.strip("'(),.\n") in highlight_words["TP_list"]%}
+
+                                <span style="background-color:rgba(0, 255, 128, 0.5)">{{text}}</span>
+
+                            {%elif text.strip("'(),.\n") in highlight_words["FP_list"]%}
+                                <span style="background-color:rgba(255, 0, 0, 0.5)">{{text}}</span>
+
+                            {%else%}
+                                {{text}}
+                            {%endif%}
+                            
+                        {%endfor%}
+
+                    {%else%}
+                        {{ text_area }}
+                    {%endif%}                
+                </div>
+                <button id="enviarBtn"  class="btn btn-outline-secondary">Search for Codename</button>
+
+                </div>
+                            
+            </div>    
+
+        </div>
+
+</div>
+
+<script>
+   
+    document.getElementById('enviarBtn').addEventListener('click', function() {
+        var texto = document.getElementById('textoDiv').innerText;
+      
+        // Remove as tags HTML do texto
+        var div = document.createElement("div");
+        div.innerHTML = texto;
+        var textoSemTags = div.textContent || div.innerText || "";
+      
+        fetch("/parse_text/result", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"text_area": textoSemTags})
+        })
+        .then(function(response) {
+            if (response.ok) {
+                window.location.href = "/parse_text/result";
+            } else {
+                console.alert("Erro during request");
+            }
+        })
+        .catch(function(error) {
+            console.alert("Error: " + error);
+        });
+    });
+    
+</script>

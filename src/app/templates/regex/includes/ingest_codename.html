@@ -1,0 +1,38 @@
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+    
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Ingest Codename List
+        </p>
+
+        <p>
+          This feature simplifies adding codenames by converting them 
+          into regular expression patterns. These patterns are saved into 
+          our database (pubmedArticles_pattern) and exported to the 
+          codename-hunter library for efficient codename discovery. 
+        </p>
+    </div>
+
+    <div style="margin:10px">
+        <form class= "loading" action="{{url_for('regex.ingest_codename')}}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload list of Codenames:</label>
+                <input type="file" class="form-control-file" id="file" name="codename_list">
+            </div>
+            <button type="submit" class="btn btn-outline-secondary btn-sm">Process List</button>
+        </form>
+    </div>
+
+    {% if codenames_updated %}
+    <div class="row">
+      {% for element in codenames_updated %}
+      <div class="col-md-4">
+        <ul>
+          <li>{{ element["codename"] }} ({{ element["status"] }})</li>
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    
+</div>

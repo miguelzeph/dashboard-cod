@@ -1,0 +1,38 @@
+<div class="card" style="margin-bottom:10px;">
+    <div class="row" style="margin:15px;">
+
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Filter Panel
+        </p><br><br>
+
+
+        <form class= "loading" method="POST" action="{{url_for('dashboard.filter_codename', show = 'TOTAL' ) }}">
+            
+            <!-- Slider Bar -->
+            <!-- name = "filter_slider" -->
+            {% include "dashboard/includes/slider_bar_year.html" %} 
+
+
+            <!-- Checkbox -->
+            <!-- name = "filter_checkbox" -->
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="flexCheckDefault">TP</label> <input class="form-check-input" type="checkbox" value="TP" name="filter_checkbox" {{"checked" if "TP" in filter_status else ""}}>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="flexCheckDefault">FP</label> <input class="form-check-input" type="checkbox" value="FP" name="filter_checkbox" {{"checked" if "FP" in filter_status else ""}}>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="flexCheckDefault">Pubchem</label> <input class="form-check-input" type="checkbox" value="PUBCHEM" name="filter_checkbox" {{"checked" if "PUBCHEM" in filter_status else ""}}>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="flexCheckDefault">Not in Pubchem</label> <input class="form-check-input" type="checkbox" value="NO_PUBCHEM" name="filter_checkbox" {{"checked" if "NO_PUBCHEM" in filter_status else ""}}>
+            </div>
+            <input type="submit" value="submit" class="btn btn-outline-secondary" />
+        </form>
+
+        <form class= "loading" method="POST" action="{{url_for('dashboard.reset_filter')}}">
+            <input type="submit" value="reset" class="btn btn-outline-secondary" />
+        </form>
+
+    </div>
+</div>

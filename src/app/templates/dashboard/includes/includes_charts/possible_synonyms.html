@@ -1,0 +1,23 @@
+<!-- BUTTON TO SHOW SYNONYMS LIST-->
+<div class="row card" style="margin-bottom:10px;">
+    <div class="col-md-3 btn-group-toggle" data-toggle="buttons" onclick="myFunction('SYNONYMS_{{loop.index}}')"
+        style="margin:10px;">
+        <label class="btn btn-outline-secondary">
+            Synonyms
+        </label>
+    </div>
+
+    <!-- LIST OF SYNONYMS -->
+    <div id="SYNONYMS_{{loop.index}}" style="display:none;margin-top:20px;">
+        <ul class="list-group">
+            
+            {%for synonym in data["possible_synonyms"]%}
+
+            <li class="list-group-item">
+                {{synonym}}
+            </li>
+
+            {%endfor%}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<a class="arrow-toggle" href="#">
+    <i class="icon-angle-down"></i>
+    <span style="font-size:14px;color:rgb(0, 120, 255);">Regular Expression Suggestions</span>
+</a>
+
+<div class="toggle-content" style="font-size:14px;">
+    
+    <b>Regular Expression tips</b>: Follow below some useful examples how to find codenames with Regular Expression on the search panel:
+    
+    <ul>
+        <li><b>AZD</b>
+        If there isn't codename just with "AZD", our search bar will returning everything that have AZD in the name, like: 
+        </li>
+        
+        <li><b>AZD.*</b>
+        This regular expression matches any string of characters that contains "AZD" followed by zero or more of any other characters. For example, this would match "AZD123", "AZD testing", "AZD123!", "123AZD", and so on
+        </li>
+
+        <li><b>^AZD.*</b>
+        This regular expression matches any string of characters that starts with "AZD", followed by zero or more of any other characters. The "^" symbol at the beginning of the expression means that it must appear at the beginning of the string. For example, this would match "AZD testing", "AZD123!", but would not match "123AZD".
+        </li>
+
+        <li><b>^AZD.*5$</b>
+        This regular expression matches any string of characters that starts with "AZD", followed by zero or more of any other characters, and ends with the number 5. The "$" symbol at the end of the expression means that it must appear at the end of the string. For example, this would match "AZD1235", but would not match "AZD5" or "AZD123".
+        </li>
+
+        <li><b>^AZD(-| )[0-9]+</b> (for space you can use a simple space or \s)
+        This regular expression matches any string of characters that starts with "AZD", followed by either a hyphen (-) or whitespace (\s), followed by one or more digits. The parentheses around the hyphen and whitespace indicate that it can match either one. For example, this would match "AZD-123", "AZD 123", but would not match "AZD123" or "AZD--123".
+        </li>
+    </ul>
+
+</div>

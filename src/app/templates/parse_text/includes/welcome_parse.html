@@ -1,0 +1,34 @@
+
+<div class="p-5 bg-light rounded-3 meucss">
+    <div class="container">
+        
+        <p class="display-5">
+            <!-- LOGO -->
+            <img src="{{ url_for('static', filename='img/parse_codename.png') }}" alt="#" class="img-thumbnail" width="100" height="100">
+            <!-- Name -->
+            Free Text - <b>Codename-Hunter</b> 
+        </p>
+
+        <p>
+            <!-- Text -->
+            Codename Hunter, a Python library for streamlined discovery and validation of drug candidate codenames.
+             Easily extract and validate codenames from various text sources like abstracts and journal articles. 
+             Submit your text in the provided text area and see the identified codenames and their validation status.
+            
+        </p>
+
+        <p>Try the text below as example:</p>
+
+        <ul>
+            <li>Explore local [18F]LU13 postcode and neighbourhood reports for 'LU13'...</li>
+            <li>AZD0156 is a potent and selective inhibitors of ATM kinase, with potential chemo-/radio-sensitizing and antineoplastic activities...</li>
+            <li>IC50 represents the concentration at which a substance exerts half of its maximal inhibitory effect...</li>
+        </ul>
+        
+
+        <!-- button to return -->
+        <a href = "{{ url_for('portal.index') }}" class="btn btn-outline-secondary">
+            Back to Portal
+        </a>
+    </div>
+</div>

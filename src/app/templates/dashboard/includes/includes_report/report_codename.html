@@ -1,0 +1,74 @@
+<div class ="container">
+
+    <!-- Row 1 -->
+    <div class = "row">
+
+        <!-- Collumn 1 -->
+        <div class = "col">
+            <!-- ################### 100 Newest codename Found ############ -->
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <!-- Button -->
+                <form class="loading" method="POST" action="{{url_for('dashboard.search', show='TOTAL')}}">
+                    <button type="submit" name="newest_codename" value="yes" class="btn btn-primary mt-3">
+                        view codename
+                    </button>
+                </form>
+                <!-- Plot Chart -->
+                {{ chart_date_TP | safe }}
+            </div>
+        </div>
+
+        <!-- Collumn 2 -->
+        <div class = "col">
+            <!-- ################### xxxxxxxxxxxxx ############ -->
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <!-- Button -->
+                <form class="loading" method="POST" action="{{url_for('dashboard.search', show='TOTAL')}}">
+                    <button type="submit" name="count_codename_TP" value="yes" class="btn btn-primary mt-3">
+                        view codename
+                    </button>
+                </form>
+                <!-- Plot Chart -->
+                {{ chart_count_TP | safe }}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 2 -->
+    <div class = "row">
+
+        <!-- Collumn 1 -->
+        <div class = "col">
+            <!-- ################### xxxxxxxxxxxxx ############ -->
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <!-- Button -->
+                <form class="loading" method="POST" action="{{url_for('dashboard.search', show='TOTAL')}}">
+                    <button type="submit" name="count_codename_FP" value="yes" class="btn btn-danger mt-3">
+                        view codename
+                    </button>
+                </form>
+                <!-- Plot Chart -->
+                {{ chart_count_FP | safe }}
+            </div>
+        </div>
+
+    <!-- Collumn 2 -->
+    <div class = "col">
+        <!-- ################### xxxxxxxxxxxxx ############ -->
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <!-- Button -->
+            <form class="loading" method="POST" action="{{url_for('dashboard.search', show='TOTAL')}}">
+                <button type="submit" name="count_codename_FP_least" value="yes" class="btn btn-danger mt-3">
+                    view codename
+                </button>
+            </form>
+            <!-- Plot Chart -->
+            {{ chart_count_FP_least | safe }}
+        </div>
+    </div>
+    <!--  Copy this struture above... and put a ELIF on search_tools.py with tag button NAME-->
+
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html' %}
+{% block title %} No codename {% endblock %}
+{% block index %}
+
+<!-- Message not found -->
+{%if codename_not_found%}
+    <!-- issue -->
+    <h3>Codename {{codename_not_found}} not found in the database...</h3>
+    <br>
+    <!-- Help-->
+    Possible issues:
+    <ul>
+        <li>Maybe in our database there isn't the codename specified</li>
+    </ul>
+    Check:
+    <ul>
+        <li>Check if there's any typo on your codename</li>
+    </ul>
+    Tips: Some times some papers use differents codenames like with "-" or without to separate the numeration
+    <ul>
+        <li>Check our list of Regular Expression that can be useful on the 
+            <a href="#" class="link-secondary" target="_blank">
+                Wiki page
+            </a>
+        </li>
+    </ul>
+
+{%elif searched_by_pmid%}
+    <!-- issue -->
+    <h3>No codename found through the file {{searched_by_pmid}} in the database...</h3>
+    <br>
+    <!-- Help-->
+    Possible issues:
+    <ul>
+        <li>There isn't pmid numbers in the file uploaded</li>
+        <li>Maybe in our database there isn't the pmid specified</li>
+        <li>Maybe wasn't found any codename from these pmid uploaded (less likely)</li>
+    </ul>
+    Check:
+    <ul>
+        <li>Check the file format</li>
+        <li>Check if the pmid are correct <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a></li>
+    </ul>
+{%else%}
+    <!-- issue -->
+    <h3>This filter doesn't exist...</h3>
+    <br>
+    <!-- Help-->
+    Possible issues:
+    <ul>
+        <li>Wasn't found any codename with this filter into our db</li>
+    </ul>
+    Check:
+    <ul>
+        <li>Check if you are trying to filter codenames without TP and FP at the same time</li>
+        <li>Check if you are trying to filter codenames not in PubChem and in PubChem at the same time</li>
+    </ul>
+{%endif%}
+
+<!-- button to return -->
+<form>
+    <input type="button" value="Go back!" onclick="history.back()" class="btn btn-outline-secondary" >
+</form>
+
+{%endblock%}

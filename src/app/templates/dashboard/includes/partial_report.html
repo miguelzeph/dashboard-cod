@@ -1,0 +1,43 @@
+{%if total_chart%}
+
+    <div class="card" style="margin-bottom:10px;">
+        <div class="row" style="margin:15px;">
+
+            <p class="h3" style="color:rgb(99, 99, 99)">
+                Partial Report from Data Searched
+
+
+                    <!-- CHART TOTAL YEAR -->
+                    <div class="col-6">
+                        <canvas id="total_year" width="600" height="300"></canvas>
+                        <script>
+                            myChart(
+                                "total_year",
+                                "total",
+                                {{ total_chart['labels_year'] | safe }},
+                                {{ total_chart['data_year'] | safe }},
+                                'rgba(100, 255, 80, 0.7)',
+                                'TOTAL Count Codename by Years')
+                        </script>
+                    </div>
+
+                    <!-- CHART TOTAL JOURNAL -->
+                    <div class="col-6">
+                        <canvas id="total_journal" width="400" height="300"></canvas>
+                        <script>
+                            myChart(
+                                "total_journal",
+                                "total",
+                                {{ total_chart['labels_journal'] | safe }},
+                                {{ total_chart['data_journal'] | safe }},
+                                'rgba(255, 100, 80, 0.7)',
+                                'TOTAL Count Codename by Journals')
+                        </script>
+                    </div>
+
+
+            </p>
+        </div>
+    </div>
+
+{%endif%}

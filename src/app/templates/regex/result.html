@@ -1,0 +1,88 @@
+{% extends 'regex/index.html' %}
+
+{% block result %}
+
+<div class="card" style="margin-top:10px;margin-bottom:10px">
+
+    <!--  Regex List -->
+    <div class="row" style="margin:15px;">
+        <p class="h3" style="color:rgb(99, 99, 99)">
+            Results
+        </p>
+
+        <br>
+        <br>
+        
+        <p class="h4"> Total of Codename: {{total_codename}}</p>
+        <p class="h4"> Total of Pattern: {{total_pattern}}</p>
+    </div>
+
+    {%for element in elements%}
+        <a id={{element.regex}} action="{{url_for('dashboard.search', show = 'TOTAL' ) }}" method="POST" class="loading btn list-group-item 
+        {%if not element.total%} # Nothing Found 
+            bg-secondary
+        {%elif element.FP==0 %} # Just TP Found
+            bg-success
+        {%elif element.TP==0%} # Just FP Found (Verify this pattern)
+            bg-danger
+        {%else%} # Ordinary result
+            bg-primary
+        {%endif%} rounded" style="margin:10px;">
+            <div class="row">
+                <div class="col-3">
+                    <strong style="color:white">{{element.regex}}</strong>
+                </div>
+
+                <div class="col-3">
+                    <strong style = "color:white">Total:</strong>
+                    <span style="color:white">{{element.total}}</span>
+                </div>
+
+                <div class="col-3">
+                    <strong style = "color:white">TP:</strong>
+                    <span style="color:white">{{element.TP}}</span>
+                </div>
+
+                <div class="col-3">
+                    <strong style = "color:white">FP:</strong>
+                    <span style="color:white">{{element.FP}}</span>
+                </div>
+
+            </div>
+        </a>
+
+{%endfor%}
+</div>
+
+<script>
+    function sendDrugName(drugName) {
+        fetch(`/dashboard/search/TOTAL`, {
+            method: 'POST',
+            body: new URLSearchParams({
+                drug_name: drugName
+            })
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Redirect to "dashboard/result.html" (if you want to load the same page just uncomment this ... target="_blank")
+            window.location.href = "/dashboard/search/TOTAL";
+        })
+        .catch(error => {
+            // just in case of errors
+            console.error(error);
+        });
+    }
+
+    // ADD um event to click for each element <a> with id equal regex
+    var elements = document.querySelectorAll('a[id]');
+    elements.forEach(element => {
+        element.addEventListener('click', function() {
+            var drugName = this.id;
+            sendDrugName(drugName);
+        });
+    });
+
+</script>
+
+
+{% endblock %}

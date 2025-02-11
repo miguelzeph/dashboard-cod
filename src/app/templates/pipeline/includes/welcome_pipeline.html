@@ -1,0 +1,33 @@
+
+<div class="p-5 bg-light rounded-3 meucss">
+    <div class="container">
+        
+        <p class="display-5">
+            <!-- LOGO -->
+            <img src="{{ url_for('static', filename='img/pipeline_codename.png') }}" alt="#" class="img-thumbnail" width="300" height="300">
+            <!-- Portal Name -->
+            Codename <b>Pipeline</b> 
+        </p>
+
+        <p>
+            <!-- Text -->
+            In our curated collection, we have assembled a diverse array of codenames extracted from various 
+            articles. Leveraging advanced Regex code, we have meticulously identified these codenames with 
+            precision. Our dedicated validation process ensures the accuracy of the codename dataset.
+
+            With our user-friendly interface, you can actively contribute by manually inputting new codenames. 
+            Our intelligent program will seamlessly process the Regex code, enabling efficient parsing and 
+            integration into the pipeline. Additionally, a single click allows you to rerun the entire pipeline, 
+            effortlessly updating it with the latest changes you've made.
+            
+            Experience the power of collaboration and contribute to the growth of our comprehensive codename database 
+            through our intuitive and efficient pipeline section.
+            
+        </p>
+
+        <!-- button to return -->
+        <a href = "{{ url_for('portal.index') }}" class="btn btn-outline-secondary">
+            Back to Portal
+        </a>
+    </div>
+</div>
